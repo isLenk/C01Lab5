@@ -35,9 +35,7 @@ jobs:
                   mongodb-version: ${{ matrix.mongodb-version }}
 
             - run: npm i
-            - run: npm start
-            - run: sleep 5
-            - run: ps -ax | grep mongo
+            - run: npm start & sleep 5
             - run: npm test
         env:
             CI: true
