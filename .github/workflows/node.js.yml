@@ -35,6 +35,13 @@ jobs:
                   mongodb-version: ${{ matrix.mongodb-version }}
 
             - run: npm i
+            - run: npm start
+            - run: |
+                until [[-z ${{pgrep mongod}}]]
+                do
+                  sleep 1
+                done
+            - run: ps -ax | grep mongo
             - run: npm test
         env:
             CI: true
